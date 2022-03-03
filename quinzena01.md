@@ -226,7 +226,7 @@ zip [1, 2, 3] ['a', 'b', 'c', 'd'] == [(1, 'a'), (2, 'b'), (3, 'c')]
 ```
 pairs [1, 2, 3] == [(1, 2), (2, 3)]
 ```
-### Funções ``and``
+### Função ``and``
 
 - Retorna ``True`` se todos os elementos são ``True``.
 
