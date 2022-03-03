@@ -154,9 +154,9 @@ if (X)
 - Alternativa ao ``if then else``.
 - Avaliadas de cima para baixo.
 ```
-funcao x | x == 0		= 0
-		 | x > 0		= 1
-		 | otherwise    = -1
+funcao x | x == 0	=  0
+	 | x > 0	=  1
+	 | otherwise    = -1
 ```
 
 - ``error`` = Interrompe a execução do programa.
