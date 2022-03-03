@@ -43,8 +43,8 @@
 - .  por -> 
 ---
 
-- Programa: definido por uma Expressão "e" ou termos  "λ"
-- Pode assumir três formas:
+#### Programa: definido por uma Expressão "e" ou termos  "λ"
+#### Pode assumir três formas:
 -- Variável (nome que assumirá um valor).
 -- Abstração (função anônima ou λ ).
 -- Aplicação (chamada de função).
