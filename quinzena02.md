@@ -52,12 +52,12 @@ filter (/= ' ') "abc def ghi"
 - Quando não quisermos utilizar instâncias de um certo tipo nos testes:
 
 ```haskell
-    propX :: Ord a => [a] -> Bool
-    -- ou
-    propX :: Ord a => [a] -> Property
+propX :: Ord a => [a] -> Bool
+-- ou
+propX :: Ord a => [a] -> Property
 
-    propX xs = not (null xs) -- Não utilizar listas nulas nos testes.
-        => head (qsort xs) == minimum xs
+propX xs = not (null xs) -- Não utilizar listas nulas nos testes.
+=> head (qsort xs) == minimum xs
 ```
 
 ### Função ``sort``
