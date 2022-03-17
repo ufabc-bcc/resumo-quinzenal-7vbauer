@@ -57,7 +57,7 @@ propX :: Ord a => [a] -> Bool
 propX :: Ord a => [a] -> Property
 
 propX xs = not (null xs) -- Não utilizar listas nulas nos testes.
-=> head (qsort xs) == minimum xs
+	==> head (qsort xs) == minimum xs
 ```
 
 ### Função ``sort``
