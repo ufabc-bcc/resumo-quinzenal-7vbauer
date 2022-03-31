@@ -3,7 +3,7 @@
 ## RA: 11048115
 
 --- 
-## Semana 05 - Monoids e Foldable, Functors
+## Semana 05 - Monoid e Foldable, Functor.
 
 ### Monoid
 
@@ -78,7 +78,7 @@ getSum (foldMap Sum [1..10])
 
 
 
-### Functors 
+### Functor 
 
 - São funções que fazem com que as funções de um certo tipo sejam aplicáveis a um tipo paramétrico contendo esse tipo.
 - Se temos uma função ``g`` (``a`` &rarr; ``b``) e um tipo paramétrico ``f``, podemos fazer a aplicação de ``g`` em ``f a`` e obter ``f b``.
