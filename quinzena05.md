@@ -290,7 +290,7 @@ main = do
   mapM_ printLen rs
 ```
 
-### Estruturas de Dados Persistentes
+### Estruturas de Dados Funcionais
 
 - Por que é dificil desenvolver estruturas persistentes?
 - - Inexistência de atualizações destrutivas;
