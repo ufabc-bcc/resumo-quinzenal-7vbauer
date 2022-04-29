@@ -24,7 +24,7 @@ x
 ```
 - Função de avaliar expressões (só até o primeiro nivel): ``seq :: a -> b -> b`` ,  ``seq x ()``.
 - **Weak Head Normal Form (WHNF)** = Forma Normal Fraca.
-- ``:force`` = Forma Normal.
+- ``:force`` = Forma Normal Completa.
 - No ghci ``:force ``.
 - No programa: ``import Control.DeepSeq``, ``force``.
 
@@ -34,16 +34,15 @@ x
 fibos :: [Integer]
 fibos = 0 : 1 : zipWith (+) fibos (tail fibos)
 
-
 -----------------------------------------------------------------------------------
--- Expressões calculadas uma vez são memorizados e reaproveitados se necessarios futuramente.
+-- Expressões calculadas uma vez são memorizadas e reaproveitadas se necessário futuramente.
 -- Todo número primo maior que 5 é na forma 6k +- 1
 primos :: [Int]
 primos =
   2 : 3 : filter ePrimo candidatos
   where
     candidatos =  junta [5,11..] [7,13..] -- Lado esquerdo é 6k -1, lado direito é 6k + 1
-    junta (a:as) (b:bs) = a : b : junta as bs -- Construimos uma lista unica alternando a inserção dos dois lados em uma mesma lista.
+    junta (a:as) (b:bs) = a : b : junta as bs -- Construimos uma lista única alternando a inserção dos dois lados em uma mesma lista.
 
 ePrimo :: Int -> Bool
 ePrimo x =
@@ -62,7 +61,7 @@ cabal
 
       ghc-options:   
         -02 (Otimização ligada)
-        -threaded (multipos threads) 
+        -threaded (múltiplos threads) 
         -rtsopts (embute opções no programa) 
         -with-rtsopts=-N (número de threads) 
         -eventlog (criação de um log do uso de threads)
@@ -132,7 +131,7 @@ fparparseq = do
 
 - ``using :: a -> Strategy a -> a``
 - ``x `using` s = runEval (s x)``
-- O formato fica ``(fib 41, fib 40) using fparpar`` para realizar o calulo com ``fparpar`` .
+- O formato fica ``(fib 41, fib 40) using fparpar`` para realizar o cálculo com ``fparpar`` .
 ---
 - Melhorando ainda mais...
 ```haskell
@@ -180,25 +179,25 @@ meanPar xss = concat medias
 - Usar ``-ls`` para no ``stack`` e em seguida ``$ threadscope media.eventlog`` para abrir uma janela com os gráficos.
 - ``spark`` : promessa de algo a ser computado e que pode ser computado em paralelo, mas não necessariamente será.
 - Cada elemento da lista gera um ``spark``, que são inseridos em um pool que alimenta os processos paralelos.
-- - par = tarefa proposta.
-- - created = adicionada ao pool.
-- - dud = avaliado, WHNF.
-- - overflow = pool de sparks cheia.
-- - converted = avaliado por um nucleo disponivel.
-- - fizzled = ja foi avaliado.
-- - garbage collector = não foi necessário.
+- - **par** = Tarefa proposta.
+- - **created** = Adicionada ao pool.
+- - **dud** = Avaliado, WHNF.
+- - **overflow** = **Pool** de sparks cheia.
+- - **converted** = Avaliado por um núcleo disponivel.
+- - **fizzled** = Já foi avaliado.
+- - **garbage collector** = Não foi necessário.
 
 ---
-### problemas
-- Poucos sparks = pode ser paralelizado ainda mais.
-- Muitos sparks = paralelizando demais.
-- Muitos duds e fizzles = estratégia não otimizada.
+### Problemas
+- Poucos sparks = Pode ser paralelizado ainda mais.
+- Muitos sparks = Paralelizando demais.
+- Muitos duds e fizzles = Estratégia não otimizada.
 ---
 
 ## Semana 10 - Concorrência
 ### Threads e forkIO
 
-- Concorrente: dado um intervalo de tempo, duas ou mais coisas avançaram.
+- Concorrente: Dado um intervalo de tempo, duas ou mais coisas avançaram.
 - Varios processos compartilhando núcleos são concorrentes.
 - Não implicam necessariamente em paralelismo.
 - Threads foram originalmente criados para expressar concorrência.
@@ -217,12 +216,12 @@ replicateM_ 100 (putChar 'B')          -- Será executado logo depois, antes do 
 
 #### Comunicação entre Threads
 ```haskell
-data MVar a -- Variavel mutavel que contém um tipo a.
+data MVar a -- Variavel mutável que contém um tipo a.
 
 newEmptyMVar :: IO (MVar a)            -- Container vazio
-newMVar      :: a -> IO (MVar a)       -- variavel nova dentro do contexto de IO
-takeMVar     :: MVar a -> IO a         -- devolve o conteudo de MVar em um IO
-putMVar      :: MVar a -> a -> IO ()   -- coloca 'a' em um MVar e te devolve um IO ()
+newMVar      :: a -> IO (MVar a)       -- Variavel nova dentro do contexto de IO
+takeMVar     :: MVar a -> IO a         -- Devolve o conteúdo de MVar em um IO
+putMVar      :: MVar a -> a -> IO ()   -- Coloca 'a' em um MVar e te devolve um IO ()
 ```
 - E a pureza ? resolvido com o ``IO`` .
 
@@ -241,7 +240,7 @@ main = do
 - Se uma thread chamar ``takeMVar`` e ela estiver vazia. ficará bloqueada até algum conteudo ser inserido.
 - Se uma thread chamar ``putMVar`` e ela estiver cheia, ficará bloqueada em espera até que alguma thread utiliza takeMVar.
 
-### Operações Assincronas
+### Operações Assíncronas
 
 ```haskell
 import Network.HTTP.Conduit --cabal http-conduit
@@ -260,7 +259,7 @@ wait (Async mvar) = takeMVar mvar
 
 . . .
 
--- Capturar paginas web com http de forma assincrona.
+-- Capturar páginas web com http de forma assincrona.
 a1 <- async $ simpleHttp "..."
 a2 <- async $ simpleHttp "..."
 
@@ -343,7 +342,7 @@ lzEsq (e:es, ds) = Just (es, e:ds)
 
 ```
 
-### Funções uteis.
+### Funções Úteis.
 - ``floor`` - arredondamento para baixo
 - ``sqrt`` - raiz quadrada
 - ``all`` - verifica se todos os valores são ``True`` para uma função f.
