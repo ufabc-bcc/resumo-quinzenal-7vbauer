@@ -135,7 +135,7 @@ fparparseq = do
 ---
 - Melhorando ainda mais...
 ```haskell
-// Passando as estrategias (sa e sb) e as expressões (a, b)
+-- Passando as estrategias (sa e sb) e as expressões (a, b)
 evalPair :: Strategy a -> Strategy b -> Strategy (a, b)
 evalPair sa sb (a, b) = do
                     a <- sa a
